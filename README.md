@@ -73,10 +73,9 @@ Now you’ll always see your custom homepage!
 
 ## 🖼️ Preview
 
-> Add this file to your project as `icon.png` and use in social previews (optional)
 
 ```
-[Insert Screenshot of Homepage UI here]
+[[ Screenshot of Homepage UI here]](https://raw.githubusercontent.com/soul-dev07/Homepage/refs/heads/main/bf9b9553-553f-4c6c-ad6a-3447d5ec0330.png)
 ```
 
 ---
