@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GOOGLE By Saad</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #000000;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            position: relative;
+            background-image: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 15px 12px;
+        }
+        
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
+                linear-gradient(135deg, rgba(255, 255, 255, 0.01) 0%, transparent 100%);
+            z-index: -2;
+            animation: bgPulse 8s ease-in-out infinite;
+        }
+        
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -1;
+            opacity: 0.3;
+        }
+        
+        @keyframes bgPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .header {
+            padding: 24px 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .logo {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            margin: 10px;
+            font-family: Arial, sans-serif;
+        }
+
+        .brand {
+            font-size: 15;
+            font-weight: bold;
+            align-self: flex-start;
+        }
+
+        .author {
+        font-size: 10x;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+        
+        .time-date {
+            text-align: right;
+        }
+        
+        .time {
+            font-size: 16px;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+        
+        .date {
+            font-size: 12px;
+            font-weight: 200;
+            opacity: 0.6;
+            margin-top: 2px;
+        }
+        
+        .weather-widget {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 12px 16px;
+            backdrop-filter: blur(20px);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .weather-widget:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+        
+        .weather-icon {
+            font-size: 20px;
+            opacity: 0.9;
+        }
+        
+        .weather-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .weather-temp {
+            font-size: 16px;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+        
+        .weather-location {
+            font-size: 10px;
+            font-weight: 300;
+            opacity: 0.6;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0 48px;
+            gap: 48px;
+        }
+        
+        .search-container {
+            width: 100%;
+            max-width: 640px;
+            position: relative;
+        }
+        
+        .search-box {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 20px 24px;
+            font-size: 16px;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            backdrop-filter: blur(20px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .search-box:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-4px);
+            box-shadow: 0 16px 64px rgba(0, 0, 0, 0.4);
+        }
+        
+        .search-box::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .music-player {
+            width: 100%;
+            max-width: 450px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 20px;
+            padding: 28px;
+            backdrop-filter: blur(30px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .music-player:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.12);
+            transform: translateY(-2px);
+        }
+        
+        .music-upload {
+            margin-bottom: 20px;
+        }
+        
+        .upload-section {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .upload-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 12px 20px;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 400;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .upload-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+        
+        .url-input-container {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .url-input {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 10px 14px;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            font-weight: 300;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .url-input:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.08);
+        }
+        
+        .url-input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .url-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            padding: 10px 16px;
+            color: #ffffff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+        
+        .url-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .playlist {
+            margin-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 16px;
+        }
+        
+        .playlist-header {
+            font-size: 12px;
+            font-weight: 400;
+            opacity: 0.7;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+        
+        .playlist-items {
+            max-height: 120px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+        }
+        
+        .playlist-items::-webkit-scrollbar {
+            width: 4px;
+        }
+        
+        .playlist-items::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 2px;
+        }
+        
+        .playlist-items::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+        }
+        
+        .playlist-item {
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 8px;
+            margin-bottom: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .playlist-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .playlist-item.active {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .playlist-item.demo-item {
+            opacity: 0.5;
+            cursor: default;
+            justify-content: center;
+        }
+        
+        .playlist-item.demo-item:hover {
+            background: rgba(255, 255, 255, 0.02);
+            border-color: rgba(255, 255, 255, 0.04);
+        }
+        
+        .song-info {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .song-name {
+            font-weight: 400;
+            opacity: 0.9;
+        }
+        
+        .song-duration {
+            font-size: 10px;
+            opacity: 0.6;
+            margin-top: 2px;
+        }
+        
+        .remove-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 4px;
+            padding: 4px 6px;
+            color: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+            font-size: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .remove-btn:hover {
+            background: rgba(255, 0, 0, 0.2);
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .music-info {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .track-title {
+            font-size: 16px;
+            font-weight: 400;
+            margin-bottom: 4px;
+            opacity: 0.9;
+        }
+        
+        .track-artist {
+            font-size: 12px;
+            font-weight: 300;
+            opacity: 0.6;
+        }
+        
+        .music-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        
+        .play-button {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 18px;
+            color: #ffffff;
+            backdrop-filter: blur(10px);
+        }
+        
+        .play-button:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+        
+        .play-button.playing {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .control-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .control-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 1px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: rgba(255, 255, 255, 0.4);
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+        
+        .time-display {
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+            font-weight: 300;
+            opacity: 0.5;
+        }
+        
+        .shortcuts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 24px;
+            width: 100%;
+            max-width: 900px;
+        }
+        
+        .shortcut {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 20px;
+            padding: 28px 24px;
+            text-align: center;
+            text-decoration: none;
+            color: #ffffff;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .shortcut::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.03), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .shortcut:hover::before {
+            left: 100%;
+        }
+        
+        .shortcut:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 80px rgba(0, 0, 0, 0.5);
+        }
+        
+        .shortcut-icon {
+            width: 40px;
+            height: 40px;
+            margin: 0 auto 16px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+        
+        .shortcut:hover .shortcut-icon {
+            background: rgba(255, 255, 255, 0.15);
+            transform: scale(1.1);
+        }
+        
+        .shortcut-name {
+            font-size: 14px;
+            font-weight: 400;
+            opacity: 0.8;
+        }
+        
+        .footer {
+            padding: 32px 48px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(30px);
+            background: rgba(255, 255, 255, 0.02);
+        }
+        
+        .footer-content {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .credit-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            font-weight: 300;
+            opacity: 0.6;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            padding: 8px 12px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        
+        .credit-item:hover {
+            opacity: 0.9;
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-1px);
+        }
+        
+        .credit-icon {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+        
+        .credit-separator {
+            width: 1px;
+            height: 16px;
+            background: rgba(255, 255, 255, 0.1);
+            opacity: 0.5;
+        }
+        
+        @media (max-width: 768px) {
+            .header, .footer {
+                padding: 20px;
+            }
+            
+            .header-right {
+                flex-direction: column;
+                gap: 16px;
+                align-items: flex-end;
+            }
+            
+            .weather-widget {
+                order: 2;
+            }
+            
+            .time-date {
+                order: 1;
+            }
+            
+            .main-content {
+                padding: 0 20px;
+                gap: 32px;
+            }
+            
+            .shortcuts {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 16px;
+            }
+            
+            .music-player {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body class="dot-matrix">
+    <div class="bg-animation"></div>
+    <div class="grid-overlay"></div>
+    
+    <header class="header">
+        <div class="logo">
+  <h2 class="text-3xl font-black opacity-90 flex gap-1">
+    <span class="text-blue-500">G</span>
+    <span class="text-red-500">O</span>
+    <span class="text-yellow-500">O</span>
+    <span class="text-blue-500">G</span>
+    <span class="text-green-500">L</span>
+    <span class="text-red-500">E</span>
+  </h2>
+  <span class="text-md opacity-80 text-right pr-2">By Saad</span>
+</div>
+
+
+        <div class="header-right">
+            <div class="weather-widget" id="weather-widget">
+                <div class="weather-icon" id="weather-icon">☀️</div>
+                <div class="weather-info">
+                    <div class="weather-temp" id="weather-temp">--°</div>
+                    <div class="weather-location" id="weather-location">Loading...</div>
+                </div>
+            </div>
+            <div class="time-date">
+                <div class="time" id="current-time"></div>
+                <div class="date" id="current-date"></div>
+            </div>
+        </div>
+    </header>
+    
+    <main class="main-content">
+        <div class="search-container">
+            <input type="text" class="search-box" placeholder="Search the web or enter URL" id="search-input">
+        </div>
+        
+        <div class="music-player">
+            <div class="music-info">
+                <div class="track-title" id="track-title">Select Your Music</div>
+                <div class="track-artist" id="track-artist">Upload or Add URL</div>
+            </div>
+            
+            <div class="music-upload">
+                <input type="file" id="music-file" accept="audio/*" style="display: none;">
+                <div class="upload-section">
+                    <button class="upload-btn" id="upload-btn">📁 Upload Song</button>
+                    <div class="url-input-container">
+                        <input type="url" id="music-url" placeholder="Or paste song URL..." class="url-input">
+                        <button class="url-btn" id="url-btn">+</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="music-controls">
+                <div class="control-btn" id="prev-btn">⏮</div>
+                <div class="play-button" id="play-btn">▶</div>
+                <div class="control-btn" id="next-btn">⏭</div>
+            </div>
+            
+            <div class="progress-bar" id="progress-container">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            
+            <div class="time-display">
+                <span id="current-time-music">0:00</span>
+                <span id="total-time">0:00</span>
+            </div>
+            
+            <div class="playlist" id="playlist">
+                <div class="playlist-header">Your Playlist</div>
+                <div class="playlist-items" id="playlist-items">
+                    <div class="playlist-item demo-item">
+                        <span>🎵 Add your favorite songs above</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="shortcuts">
+            <a href="https://gmail.com" class="shortcut">
+                <div class="shortcut-icon">✉</div>
+                <div class="shortcut-name">Gmail</div>
+            </a>
+            <a href="https://youtube.com" class="shortcut">
+                <div class="shortcut-icon">▶</div>
+                <div class="shortcut-name">YouTube</div>
+            </a>
+            <a href="https://github.com" class="shortcut">
+                <div class="shortcut-icon">⚡</div>
+                <div class="shortcut-name">GitHub</div>
+            </a>
+            <a href="https://twitter.com" class="shortcut">
+                <div class="shortcut-icon">🐦</div>
+                <div class="shortcut-name">Twitter</div>
+            </a>
+            <a href="https://reddit.com" class="shortcut">
+                <div class="shortcut-icon">💬</div>
+                <div class="shortcut-name">Reddit</div>
+            </a>
+            <a href="https://netflix.com" class="shortcut">
+                <div class="shortcut-icon">🎬</div>
+                <div class="shortcut-name">Netflix</div>
+            </a>
+            <a href="https://spotify.com" class="shortcut">
+                <div class="shortcut-icon">🎵</div>
+                <div class="shortcut-name">Spotify</div>
+            </a>
+            <a href="https://instagram.com" class="shortcut">
+                <div class="shortcut-icon">📷</div>
+                <div class="shortcut-name">Instagram</div>
+            </a>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="credit-item">
+                <span class="credit-icon">⚡</span>
+                <span>DEV By Saad</span>
+            </div>
+            <div class="credit-separator"></div>
+            <div class="credit-item">
+                <span class="credit-icon">✨</span>
+                <span>Design By Soul</span>
+            </div>
+        </div>
+    </footer>
+    
+    <audio id="audio-player" preload="metadata">
+        <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+D" loop></source>
+    </audio>
+    
+    <script>
+        // Time and Date
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('en-US', { 
+                hour12: false,
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            const dateString = now.toLocaleDateString('en-US', {
+                weekday: 'short',
+                month: 'short',
+                day: 'numeric'
+            });
+            document.getElementById('current-time').textContent = timeString;
+            document.getElementById('current-date').textContent = dateString;
+        }
+        
+        updateTime();
+        setInterval(updateTime, 1000);
+        
+        // Search functionality
+        const searchInput = document.getElementById('search-input');
+        
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                const query = this.value.trim();
+                if (query) {
+                    if (query.includes('.') && !query.includes(' ')) {
+                        window.location.href = query.startsWith('http') ? query : 'https://' + query;
+                    } else {
+                        window.location.href = 'https://www.google.com/search?q=' + encodeURIComponent(query);
+                    }
+                }
+            }
+        });
+        
+        // Music Player with Custom Songs
+        const audio = document.getElementById('audio-player');
+        const playBtn = document.getElementById('play-btn');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const progressFill = document.getElementById('progress-fill');
+        const progressContainer = document.getElementById('progress-container');
+        const currentTimeDisplay = document.getElementById('current-time-music');
+        const totalTimeDisplay = document.getElementById('total-time');
+        const trackTitle = document.getElementById('track-title');
+        const trackArtist = document.getElementById('track-artist');
+        const uploadBtn = document.getElementById('upload-btn');
+        const musicFile = document.getElementById('music-file');
+        const musicUrl = document.getElementById('music-url');
+        const urlBtn = document.getElementById('url-btn');
+        const playlistItems = document.getElementById('playlist-items');
+        
+        let isPlaying = false;
+        let currentTrack = 0;
+        let playlist = [];
+        
+        // File upload handler
+        uploadBtn.addEventListener('click', () => {
+            musicFile.click();
+        });
+        
+        musicFile.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const url = URL.createObjectURL(file);
+                const song = {
+                    title: file.name.replace(/\.[^/.]+$/, ""), // Remove extension
+                    artist: "Local File",
+                    url: url,
+                    duration: "Unknown"
+                };
+                addToPlaylist(song);
+            }
+        });
+        
+        // URL input handler
+        urlBtn.addEventListener('click', () => {
+            const url = musicUrl.value.trim();
+            if (url) {
+                const song = {
+                    title: extractTitleFromUrl(url),
+                    artist: "Online Stream",
+                    url: url,
+                    duration: "Unknown"
+                };
+                addToPlaylist(song);
+                musicUrl.value = '';
+            }
+        });
+        
+        musicUrl.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                urlBtn.click();
+            }
+        });
+        
+        function extractTitleFromUrl(url) {
+            try {
+                const filename = url.split('/').pop().split('?')[0];
+                return filename.replace(/\.[^/.]+$/, "") || "Unknown Track";
+            } catch {
+                return "Unknown Track";
+            }
+        }
+        
+        function addToPlaylist(song) {
+            playlist.push(song);
+            updatePlaylistDisplay();
+            
+            // If this is the first song, load it
+            if (playlist.length === 1) {
+                loadTrack(0);
+            }
+        }
+        
+        function updatePlaylistDisplay() {
+            const demoItem = playlistItems.querySelector('.demo-item');
+            if (demoItem && playlist.length > 0) {
+                demoItem.remove();
+            }
+            
+            playlistItems.innerHTML = '';
+            
+            playlist.forEach((song, index) => {
+                const item = document.createElement('div');
+                item.className = `playlist-item ${index === currentTrack ? 'active' : ''}`;
+                item.innerHTML = `
+                    <div class="song-info">
+                        <div class="song-name">${song.title}</div>
+                        <div class="song-duration">${song.artist}</div>
+                    </div>
+                    <button class="remove-btn" onclick="removeFromPlaylist(${index})">×</button>
+                `;
+                
+                item.addEventListener('click', (e) => {
+                    if (!e.target.classList.contains('remove-btn')) {
+                        loadTrack(index);
+                    }
+                });
+                
+                playlistItems.appendChild(item);
+            });
+            
+            if (playlist.length === 0) {
+                const demoItem = document.createElement('div');
+                demoItem.className = 'playlist-item demo-item';
+                demoItem.innerHTML = '<span>🎵 Add your favorite songs above</span>';
+                playlistItems.appendChild(demoItem);
+            }
+        }
+        
+        window.removeFromPlaylist = function(index) {
+            if (index === currentTrack && isPlaying) {
+                audio.pause();
+                isPlaying = false;
+                playBtn.textContent = '▶';
+                playBtn.classList.remove('playing');
+            }
+            
+            playlist.splice(index, 1);
+            
+            if (index < currentTrack) {
+                currentTrack--;
+            } else if (index === currentTrack && playlist.length > 0) {
+                if (currentTrack >= playlist.length) {
+                    currentTrack = 0;
+                }
+                loadTrack(currentTrack);
+            } else if (playlist.length === 0) {
+                currentTrack = 0;
+                trackTitle.textContent = "Select Your Music";
+                trackArtist.textContent = "Upload or Add URL";
+                totalTimeDisplay.textContent = "0:00";
+                currentTimeDisplay.textContent = "0:00";
+                progressFill.style.width = "0%";
+            }
+            
+            updatePlaylistDisplay();
+        }
+        
+        function loadTrack(index) {
+            if (playlist.length === 0) return;
+            
+            currentTrack = index;
+            const song = playlist[currentTrack];
+            
+            audio.src = song.url;
+            trackTitle.textContent = song.title;
+            trackArtist.textContent = song.artist;
+            
+            updatePlaylistDisplay();
+            
+            // Reset progress
+            progressFill.style.width = "0%";
+            currentTimeDisplay.textContent = "0:00";
+            
+            // Load metadata
+            audio.addEventListener('loadedmetadata', () => {
+                totalTimeDisplay.textContent = formatTime(audio.duration);
+            }, { once: true });
+        }
+        
+        function formatTime(seconds) {
+            if (isNaN(seconds)) return "0:00";
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs.toString().padStart(2, '0')}`;
+        }
+        
+        playBtn.addEventListener('click', function() {
+            if (playlist.length === 0) {
+                alert('Please add a song to your playlist first!');
+                return;
+            }
+            
+            if (isPlaying) {
+                audio.pause();
+                playBtn.textContent = '▶';
+                playBtn.classList.remove('playing');
+            } else {
+                audio.play().catch(e => {
+                    console.log('Playback failed:', e);
+                    alert('Unable to play this audio file. Please try a different format or URL.');
+                });
+                playBtn.textContent = '⏸';
+                playBtn.classList.add('playing');
+            }
+            isPlaying = !isPlaying;
+        });
+        
+        prevBtn.addEventListener('click', function() {
+            if (playlist.length === 0) return;
+            currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
+            loadTrack(currentTrack);
+            if (isPlaying) {
+                audio.play();
+            }
+        });
+        
+        nextBtn.addEventListener('click', function() {
+            if (playlist.length === 0) return;
+            currentTrack = (currentTrack + 1) % playlist.length;
+            loadTrack(currentTrack);
+            if (isPlaying) {
+                audio.play();
+            }
+        });
+        
+        // Progress bar click to seek
+        progressContainer.addEventListener('click', (e) => {
+            if (playlist.length === 0) return;
+            const rect = progressContainer.getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+            const width = rect.width;
+            const seekTime = (clickX / width) * audio.duration;
+            audio.currentTime = seekTime;
+        });
+        
+        // Audio event listeners
+        audio.addEventListener('timeupdate', () => {
+            if (audio.duration) {
+                const progress = (audio.currentTime / audio.duration) * 100;
+                progressFill.style.width = progress + '%';
+                currentTimeDisplay.textContent = formatTime(audio.currentTime);
+            }
+        });
+        
+        audio.addEventListener('ended', () => {
+            nextBtn.click();
+        });
+        
+        audio.addEventListener('error', (e) => {
+            console.log('Audio error:', e);
+            alert('Error loading audio file. Please check the file format or URL.');
+        });
+        
+        // Initialize display
+        updatePlaylistDisplay();
+        
+        // Weather functionality
+        async function fetchWeather() {
+            try {
+                // Using OpenWeatherMap API (you'll need to replace 'YOUR_API_KEY' with actual key)
+                const city = 'beed'; // Default city based on user location
+                const apiKey = '249aacbf8a1cbc99472c4715ad8ca256'; // Replace with actual API key
+                
+                // For demo purposes, we'll simulate weather data
+                // In real implementation, use: const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`);
+                
+                // Simulated weather data for demo
+                const weatherData = {
+                    main: {
+                        temp: Math.round(28 + Math.random() * 10), // Random temp between 28-38°C
+                    },
+                    weather: [{
+                        main: 'Clear',
+                        description: 'clear sky'
+                    }],
+                    name: 'beed'
+                };
+                
+                updateWeatherDisplay(weatherData);
+                
+            } catch (error) {
+                console.log('Weather fetch error:', error);
+                // Fallback display
+                document.getElementById('weather-temp').textContent = '32°';
+                document.getElementById('weather-location').textContent = 'Machilipatnam';
+                document.getElementById('weather-icon').textContent = '☀️';
+            }
+        }
+        
+        function updateWeatherDisplay(data) {
+            const temp = document.getElementById('weather-temp');
+            const location = document.getElementById('weather-location');
+            const icon = document.getElementById('weather-icon');
+            
+            temp.textContent = `${Math.round(data.main.temp)}°`;
+            location.textContent = data.name;
+            
+            // Weather icon mapping
+            const weatherIcons = {
+                'Clear': '☀️',
+                'Clouds': '☁️',
+                'Rain': '🌧️',
+                'Drizzle': '🌦️',
+                'Thunderstorm': '⛈️',
+                'Snow': '❄️',
+                'Mist': '🌫️',
+                'Fog': '🌫️',
+                'Haze': '🌫️'
+            };
+            
+            icon.textContent = weatherIcons[data.weather[0].main] || '🌤️';
+        }
+        
+        function getWeatherForCity(cityName) {
+            // This function can be called to change the city
+            // For now, it's set to default location
+            fetchWeather();
+        }
+        
+        // Initialize weather
+        fetchWeather();
+        
+        // Update weather every 10 minutes
+        setInterval(fetchWeather, 600000);
+        
+        // Enhanced mouse interaction
+        document.addEventListener('mousemove', function(e) {
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            document.querySelector('.bg-animation').style.background = `
+                radial-gradient(circle at ${x * 100}% ${y * 100}%, rgba(255, 255, 255, 0.04) 0%, transparent 50%),
+                radial-gradient(circle at ${(1-x) * 100}% ${(1-y) * 100}%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
+                linear-gradient(135deg, rgba(255, 255, 255, 0.01) 0%, transparent 100%)
+            `;
+        });
+    </script>
+</body>
+</html>
