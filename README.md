@@ -71,14 +71,6 @@ Now you’ll always see your custom homepage!
 
 ---
 
-## 🖼️ Preview
-
-
-```
-[[ Screenshot of Homepage UI here]](https://raw.githubusercontent.com/soul-dev07/Homepage/refs/heads/main/bf9b9553-553f-4c6c-ad6a-3447d5ec0330.png)
-```
-
----
 
 ## 🛠️ Tech Stack
 
@@ -109,8 +101,8 @@ This is a personal dashboard, but feel free to fork and customize it!
 
 Want to collab or improve this project?
 
-> Email: saad@example.com  
-> Instagram: [@soul.gg](https://instagram.com)
+> Email: Saadmomin94o@gmail.com 
+> Instagram: [@soul.gg](https://www.instagram.com/s4dz_49/)
 
 ---
 
